@@ -336,17 +336,17 @@ class GoogleDriveHelper:
             if meta.get("mimeType") == self.__G_DRIVE_DIR_MIME_TYPE:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 result = self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
-                msg += f'<b>Filename: </b><code>{meta.get("name")}</code>\n<b>Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>'
-                msg += f'\n<b>Type: </b><code>Folder</code>'
-                msg += f'\n<b>SubFolders: </b><code>{self.total_folders}</code>'
-                msg += f'\n<b>Files: </b><code>{self.total_files}</code>'
+                msg += f'<b>🗂 Filename: </b><code>{meta.get("name")}</code>\n\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>\n'
+                msg += f'\n<b>👁‍🗨 Type: </b><code>Folder</code>\n'
+                msg += f'\n<b>📂 SubFolders: </b><code>{self.total_folders}</code>\n'
+                msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
                 durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
                     surl = requests.get(f'https://{SHORTENER}/api?api={SHORTENER_API}&url={durl}&format=text').text
-                    buttons.buildbutton("☁️ Drive Link", surl)
+                    buttons.buildbutton("♻️ Google Drive Link", surl)
                 else:
-                    buttons.buildbutton("☁️ Drive Link", durl)
+                    buttons.buildbutton("♻️ Google Drive Link", durl)
                 if INDEX_URL is not None:
                     url_path = requests.utils.quote(f'{meta.get("name")}')
                     url = f'{INDEX_URL}/{url_path}/'
@@ -363,21 +363,21 @@ class GoogleDriveHelper:
                     buttons.buildbutton(f"{BUTTON_SIX_NAME}", f"{BUTTON_SIX_URL}")
             else:
                 file = self.copyFile(meta.get('id'), parent_id)
-                msg += f'<b>Filename: </b><code>{file.get("name")}</code>'
+                msg += f'<b>🗂 Filename: </b><code>{file.get("name")}</code>'
                 durl = self.__G_DRIVE_BASE_DOWNLOAD_URL.format(file.get("id"))
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
                     surl = requests.get(f'https://{SHORTENER}/api?api={SHORTENER_API}&url={durl}&format=text').text
-                    buttons.buildbutton("☁️ Drive Link", surl)
+                    buttons.buildbutton("♻️ Google Drive Link", surl)
                 else:
-                    buttons.buildbutton("☁️ Drive Link", durl)
+                    buttons.buildbutton("♻️ Google Drive Link", durl)
                 try:
                     typeee = file.get('mimeType')
                 except:
                     typeee = 'File' 
                 try:
-                    msg += f'\n<b>Size: </b><code>{get_readable_file_size(int(meta.get("size")))}</code>'
-                    msg += f'\n<b>Type: </b><code>{typeee}</code>'
+                    msg += f'\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(int(meta.get("size")))}</code>\n'
+                    msg += f'\n<b>👁‍🗨 Type: </b><code>{typeee}</code>'
                 except TypeError:
                     pass
                 if INDEX_URL is not None:
@@ -643,13 +643,13 @@ class GoogleDriveHelper:
             LOGGER.info(f"Counting: {name}")
             if drive_file['mimeType'] == self.__G_DRIVE_DIR_MIME_TYPE:
                 self.gDrive_directory(**drive_file)
-                msg += f'<b>Filename: </b><code>{name}</code>'
-                msg += f'\n<b>Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>'
-                msg += f'\n<b>Type: </b><code>Folder</code>'
-                msg += f'\n<b>SubFolders: </b><code>{self.total_folders}</code>'
-                msg += f'\n<b>Files: </b><code>{self.total_files}</code>'
+                msg += f'<b>🗂 Filename: </b><code>{name}</code>\n'
+                msg += f'\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>\n'
+                msg += f'\n<b>👁‍🗨 Type: </b><code>Folder</code>'
+                msg += f'\n<b>📂 SubFolders: </b><code>{self.total_folders}</code>\n'
+                msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
             else:
-                msg += f'<b>Filename: </b><code>{name}</code>'
+                msg += f'<b>🗂 Filename: </b><code>{name}</code>'
                 try:
                     typee = drive_file['mimeType']
                 except:
@@ -657,9 +657,9 @@ class GoogleDriveHelper:
                 try:
                     self.total_files += 1
                     self.gDrive_file(**drive_file)
-                    msg += f'\n<b>Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>'
-                    msg += f'\n<b>Type: </b><code>{typee}</code>'
-                    msg += f'\n<b>Files: </b><code>{self.total_files}</code>'
+                    msg += f'\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>\n'
+                    msg += f'\n<b>👁‍🗨 Type: </b><code>{typee}</code>'
+                    msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
                 except TypeError:
                     pass
         except Exception as err:
