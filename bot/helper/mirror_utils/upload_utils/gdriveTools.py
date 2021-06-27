@@ -645,7 +645,7 @@ class GoogleDriveHelper:
                 self.gDrive_directory(**drive_file)
                 msg += f'<b>🗂 Filename: </b><code>{name}</code>\n'
                 msg += f'\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>\n'
-                msg += f'\n<b>👁‍🗨 Type: </b><code>Folder</code>'
+                msg += f'\n<b>👁‍🗨 Type: </b><code>Folder</code>\n'
                 msg += f'\n<b>📂 SubFolders: </b><code>{self.total_folders}</code>\n'
                 msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
             else:
@@ -658,7 +658,7 @@ class GoogleDriveHelper:
                     self.total_files += 1
                     self.gDrive_file(**drive_file)
                     msg += f'\n<b>🤏🏻 Size: </b><code>{get_readable_file_size(self.total_bytes)}</code>\n'
-                    msg += f'\n<b>👁‍🗨 Type: </b><code>{typee}</code>'
+                    msg += f'\n<b>👁‍🗨 Type: </b><code>{typee}</code>\n'
                     msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
                 except TypeError:
                     pass
