@@ -649,7 +649,7 @@ class GoogleDriveHelper:
                 msg += f'\n<b>📂 SubFolders: </b><code>{self.total_folders}</code>\n'
                 msg += f'\n<b>🗃 Files: </b><code>{self.total_files}</code>'
             else:
-                msg += f'<b>🗂 Filename: </b><code>{name}</code>'
+                msg += f'<b>🗂 Filename: </b><code>{name}</code>\n'
                 try:
                     typee = drive_file['mimeType']
                 except:
