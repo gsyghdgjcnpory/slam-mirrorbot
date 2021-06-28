@@ -19,7 +19,7 @@ def countNode(update, context):
         else:
             uname = f'<a href="tg://user?id={update.message.from_user.id}">{update.message.from_user.first_name}</a>'
         if uname is not None:
-            cc = f'\n\n👤 Counter: {uname}\n\nOnioneers Cloud Owner: @ridoxin'
+            cc = f'\n\n👤 Counter: {uname}\n\nOnioneers Resources Owner: @ridoxin'
         sendMessage(result + cc, context.bot, update)
     else:
         sendMessage("Provide G-Drive Shareable Link to Count.", context.bot, update)
